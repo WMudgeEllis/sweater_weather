@@ -105,19 +105,20 @@ RSpec.describe 'forcast response' do
 
      body = JSON.parse(response.body, symbolize_names: true)
 
-     daily_weather =  body[:data][:attributes][:daily_weather][0]
+     hourly_weather =  body[:data][:attributes][:hourly_weather][0]
 
-     expect(daily_weather).to have_key(:time)
-     expect(daily_weather[:time]).to be_a(String)
+     expect(hourly_weather).to have_key(:time)
+     expect(hourly_weather[:time]).to be_a(String)
 
-     expect(daily_weather).to have_key(:temperature)
-     expect(daily_weather[:temperature]).to be_a(String)
+     expect(hourly_weather).to have_key(:temperature)
+     expect(hourly_weather[:temperature]).to be_a(String)
 
-     expect(daily_weather).to have_key(:conditions)
-     expect(daily_weather[:conditions]).to be_a(String)
+     #the first ‘description’ field from the weather data as given by OpenWeather
+     expect(hourly_weather).to have_key(:conditions)
+     expect(hourly_weather[:conditions]).to be_a(String)
 
-     expect(daily_weather).to have_key(:icon)
-     expect(daily_weather[:icon]).to be_a(String)
+     expect(hourly_weather).to have_key(:icon)
+     expect(hourly_weather[:icon]).to be_a(String)
    end
 
 end
