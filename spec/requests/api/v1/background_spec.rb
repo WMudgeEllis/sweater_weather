@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe 'background image search endpoint' do
 
-  it 'has the correct structure' do
+  it 'has the correct structure', :vcr do
     get '/api/v1/backgrounds?location=denver,co'
 
     expect(response).to be_successful
