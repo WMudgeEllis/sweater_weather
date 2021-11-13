@@ -51,7 +51,7 @@ RSpec.describe 'forcast response' do
     expect(current_weather[:temperature]).to be_a(Float)
 
     expect(current_weather).to have_key(:feel_like)
-    expect(current_weather[:feel_like]).to be_a(Float)
+    expect(current_weather[:feels_like]).to be_a(Float)
 
     expect(current_weather).to have_key(:humidity)
     expect(current_weather[:humidity]).to be_a(Float || Integer)
