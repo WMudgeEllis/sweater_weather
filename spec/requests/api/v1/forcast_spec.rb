@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe 'forcast response' do
 
-  it 'can have top level structure' do
+  it 'can have top level structure', :vcr do
     get '/api/v1/forcast?location=denver,co'
 
     expect(response).to be_successful
@@ -28,10 +28,10 @@ RSpec.describe 'forcast response' do
 
     expect(body[:data][:attributes]).to have_key(:hourly_weather)
     expect(body[:data][:attributes][:hourly_weather]).to be_a(Array)
-    expect(body[:data][:attributes][:hourly_weather]).to eq(8)
+    expect(body[:data][:attributes][:hourly_weather].length).to eq(8)
   end
 
-  it 'can have current weather structure' do
+  it 'can have current weather structure', :vcr do
     get '/api/v1/forcast?location=denver,co'
 
     body = JSON.parse(response.body, symbolize_names: true)
@@ -50,17 +50,17 @@ RSpec.describe 'forcast response' do
     expect(current_weather).to have_key(:temperature)
     expect(current_weather[:temperature]).to be_a(Float)
 
-    expect(current_weather).to have_key(:feel_like)
+    expect(current_weather).to have_key(:feels_like)
     expect(current_weather[:feels_like]).to be_a(Float)
 
     expect(current_weather).to have_key(:humidity)
-    expect(current_weather[:humidity]).to be_a(Float || Integer)
+    expect(current_weather[:humidity]).to be_a(Integer)
 
     expect(current_weather).to have_key(:uvi)
-    expect(current_weather[:uvi]).to be_a(Float || Integer)
+    expect(current_weather[:uvi]).to be_a(Float)
 
     expect(current_weather).to have_key(:visibility)
-    expect(current_weather[:visibility]).to be_a(Float || Integer)
+    expect(current_weather[:visibility]).to be_a(Integer)
 
     #the first ‘description’ field from the weather data as given by OpenWeather
     expect(current_weather).to have_key(:conditions)
@@ -70,7 +70,7 @@ RSpec.describe 'forcast response' do
     expect(current_weather[:icon]).to be_a(String)
   end
 
-   it 'can have daily weather structure' do
+   it 'can have daily weather structure', :vcr do
      get '/api/v1/forcast?location=denver,co'
 
      body = JSON.parse(response.body, symbolize_names: true)
@@ -100,7 +100,7 @@ RSpec.describe 'forcast response' do
      expect(daily_weather[:icon]).to be_a(String)
    end
 
-   it 'can have hourly weather structure' do
+   it 'can have hourly weather structure', :vcr do
      get '/api/v1/forcast?location=denver,co'
 
      body = JSON.parse(response.body, symbolize_names: true)
@@ -111,7 +111,7 @@ RSpec.describe 'forcast response' do
      expect(hourly_weather[:time]).to be_a(String)
 
      expect(hourly_weather).to have_key(:temperature)
-     expect(hourly_weather[:temperature]).to be_a(String)
+     expect(hourly_weather[:temperature]).to be_a(Float)
 
      #the first ‘description’ field from the weather data as given by OpenWeather
      expect(hourly_weather).to have_key(:conditions)
