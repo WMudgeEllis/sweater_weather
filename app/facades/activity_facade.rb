@@ -10,12 +10,11 @@ class ActivityFacade
       arr << Activity.new(ActivityService.recreational)
     elsif temp >= 50
       arr << Activity.new(ActivityService.busywork)
-    elsif temp < 50
+    else
       arr << Activity.new(ActivityService.cooking)
     end
 
     relaxation = Activity.new(ActivityService.relaxation)
     arr << relaxation
-    arr
   end
 end
