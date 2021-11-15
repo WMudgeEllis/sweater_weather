@@ -1,22 +1,23 @@
 class ActivityService
 
   def self.relaxation
-    response = Faraday.get('http://www.boredapi.com/api/activity', {type: 'relaxation'})
-    JSON.parse(response.body, symbolize_names: true)
+    base('relaxation')
   end
 
   def self.recreational
-    response = Faraday.get('http://www.boredapi.com/api/activity', {type: 'recreational'})
-    JSON.parse(response.body, symbolize_names: true)
+    base('recreational')
   end
 
   def self.busywork
-    response = Faraday.get('http://www.boredapi.com/api/activity', {type: 'busywork'})
-    JSON.parse(response.body, symbolize_names: true)
+    base('busywork')
   end
 
   def self.cooking
-    response = Faraday.get('http://www.boredapi.com/api/activity', {type: 'cooking'})
+    base('cooking')
+  end
+
+  def self.base(type)
+    response = Faraday.get('http://www.boredapi.com/api/activity', {type: type})
     JSON.parse(response.body, symbolize_names: true)
   end
 end
