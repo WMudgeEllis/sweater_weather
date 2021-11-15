@@ -10,7 +10,6 @@ class ActivitySerializer
           forcast: {
             summary: forcast[:attributes][:current_weather][:conditions],
             temperature: "#{forcast[:attributes][:current_weather][:temperature]} F"
-          }
         },
         activities: activities.map  do |activity|
           {
@@ -20,6 +19,7 @@ class ActivitySerializer
             price: activity.price
           }
         end
+      }
       }
     }
   end
