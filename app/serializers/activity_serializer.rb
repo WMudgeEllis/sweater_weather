@@ -7,10 +7,9 @@ class ActivitySerializer
         type: 'activities',
         attributes: {
           destination: location,
-          forcast: {              
+          forcast: {
             summary: forcast[:attributes][:current_weather][:conditions],
-            #format to add f
-            temperature: forcast[:attributes][:current_weather][:temperature]
+            temperature: "#{forcast[:attributes][:current_weather][:temperature]} F"
           }
         },
         activities: activities.map  do |activity|
