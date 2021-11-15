@@ -21,14 +21,14 @@ RSpec.describe 'activities endpoint' do
      expect(body[:data][:attributes][:forcast]).to have_key(:summary)
      expect(body[:data][:attributes][:forcast]).to have_key(:temperature)
 
-     expect(body[:data][:attributes]).to have_key(:activities)
-     expect(body[:data][:attributes][:activities]).to be_a(Array)
-     expect(body[:data][:attributes][:activities].length).to eq(2)
+     expect(body[:data]).to have_key(:activities)
+     expect(body[:data][:activities]).to be_a(Array)
+     expect(body[:data][:activities].length).to eq(2)
 
-     expect(body[:data][:attributes][:activities][0]).to have_key(:title)
-     expect(body[:data][:attributes][:activities][0]).to have_key(:type)
-     expect(body[:data][:attributes][:activities][0]).to have_key(:participants)
-     expect(body[:data][:attributes][:activities][0]).to have_key(:price)
+     expect(body[:data][:activities][0]).to have_key(:title)
+     expect(body[:data][:activities][0]).to have_key(:type)
+     expect(body[:data][:activities][0]).to have_key(:participants)
+     expect(body[:data][:activities][0]).to have_key(:price)
 
   end
 end
