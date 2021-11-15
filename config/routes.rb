@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :forcast, only: :index
       resources :backgrounds, only: :index
+      resources :activities, only: :index
     end
   end
 end
