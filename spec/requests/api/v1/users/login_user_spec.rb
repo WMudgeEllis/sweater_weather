@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe 'user login request' do
-# user 1 api key
-#1e60ed32c5957ce248ec08a463af8d19
+
   before :each do
      user = User.create!(email: 'whatever@example.com', password: 'password')
      key = user.api_keys.create!(key: '1234')

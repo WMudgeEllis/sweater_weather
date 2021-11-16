@@ -5,7 +5,6 @@ RSpec.describe MapquestService do
 
   it 'can retrieve location with city/state', :vcr do
     response = MapquestService.location_info('denver,co')
-    # body = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_a(Hash)
     expect(response).to have_key(:info)
@@ -15,5 +14,13 @@ RSpec.describe MapquestService do
     expect(response[:results][0][:locations][0][:latLng][:lat]).to eq(39.738453)
     expect(response[:results][0][:locations][0][:latLng]).to have_key(:lng)
     expect(response[:results][0][:locations][0][:latLng][:lng]).to eq(-104.984853)
+  end
+
+  it 'can get route information', :vcr do
+    response = MapquestService.route('denver,co', 'fairplay,co')
+
+    expect(response).to be_a(Hash)
+    expect(response).to have_key(:route)
+    expect(response[:route]).to have_key(:formattedTime)
   end
 end

@@ -4,7 +4,6 @@ class Api::V1::SessionsController < ApplicationController
   def create
 
     user = User.find_by(email: params[:email])
-    # require "pry"; binding.pry
     if user && user.authenticate(params[:password])
       # o:m for future scalability, but this is needed for o:m
       key = user.api_keys.first

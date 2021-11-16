@@ -7,4 +7,8 @@ class MapquestFacade
       long: location_data[:results][0][:locations][0][:latLng][:lng]
     }
   end
+
+  def self.route_time(start, destination)
+    MapquestService.route(start, destination)[:route][:formattedTime]
+  end
 end
