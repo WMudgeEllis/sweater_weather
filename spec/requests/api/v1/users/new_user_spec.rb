@@ -15,16 +15,20 @@ RSpec.describe 'user endpoint' do
       password_confirmation: 'password'
     }
 
+    @worse_body_data = {
+      password: 'password',
+      password_confirmation: 'password'
+    }
   end
 
-  xit 'can create a user' do
+  it 'can create a user' do
     post '/api/v1/users', params: @body_data
-    #fails for some reason, doesnt hit the conditional in test but hits in development
-    # expect(response.status).to eq(201)
+
+    expect(response.status).to eq(201)
 
     body = JSON.parse(response.body, symbolize_names: true)
 
-    require "pry"; binding.pry
+
     expect(body).to have_key(:data)
     expect(body[:data]).to have_key(:type)
     expect(body[:data]).to have_key(:id)
@@ -53,6 +57,15 @@ RSpec.describe 'user endpoint' do
     body = JSON.parse(response.body, symbolize_names: true)
 
     expect(body[:errors][0]).to eq("Email has already been taken")
+  end
 
+  it 'returns an error when email is missing' do
+    post '/api/v1/users', params: @worse_body_data
+
+    expect(response.status).to eq(403)
+
+    body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(body[:errors][0]).to eq("Email can't be blank")
   end
 end
