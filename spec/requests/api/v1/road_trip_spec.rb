@@ -23,6 +23,11 @@ RSpec.describe 'road trip endpoint' do
       api_key: key.key
     }
 
+    @bad_origin_credentials = {
+      destination: '',
+      api_key: key.key
+    }
+
   end
 
   it 'can get details about a roadtrip', :vcr do
@@ -55,7 +60,7 @@ RSpec.describe 'road trip endpoint' do
   end
 
 
-  it 'requires extant location', :vcr do
+  it 'requires non empty string', :vcr do
     post '/api/v1/road_trip', params: @bad_location_credentials
 
     expect(response.status).to eq(400)
@@ -64,7 +69,17 @@ RSpec.describe 'road trip endpoint' do
 
     expect(body).to have_key(:data)
     expect(body[:data]).to eq('missing location')
+  end
 
+  it 'requires existance of parameters', :vcr do
+    post '/api/v1/road_trip', params: @bad_origin_credentials
+
+    expect(response.status).to eq(400)
+
+    body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(body).to have_key(:data)
+    expect(body[:data]).to eq('missing location')
   end
 
 end
