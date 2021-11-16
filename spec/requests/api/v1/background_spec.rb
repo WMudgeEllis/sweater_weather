@@ -18,4 +18,14 @@ RSpec.describe 'background image search endpoint' do
     expect(body[:data][:attributes][:credit]).to have_key(:photographer)
     expect(body[:data][:attributes][:credit]).to have_key(:photographer_portfolio)
   end
+
+   it 'returns 400 with no params', :vcr do
+     get '/api/v1/backgrounds?'
+
+     expect(response.status).to eq(400)
+
+     body = JSON.parse(response.body, symbolize_names: true)
+
+     expect(body).to have_key(:data)
+   end
 end

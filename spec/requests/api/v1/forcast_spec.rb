@@ -91,7 +91,6 @@ RSpec.describe 'forcast response' do
     expect(daily_weather).to have_key(:min_temp)
     expect(daily_weather[:min_temp]).to be_a(Float)
 
-    # the first ‘description’ field from the weather data as given by OpenWeather
     expect(daily_weather).to have_key(:conditions)
     expect(daily_weather[:conditions]).to be_a(String)
 
@@ -112,11 +111,20 @@ RSpec.describe 'forcast response' do
     expect(hourly_weather).to have_key(:temperature)
     expect(hourly_weather[:temperature]).to be_a(Float)
 
-    # the first ‘description’ field from the weather data as given by OpenWeather
     expect(hourly_weather).to have_key(:conditions)
     expect(hourly_weather[:conditions]).to be_a(String)
 
     expect(hourly_weather).to have_key(:icon)
     expect(hourly_weather[:icon]).to be_a(String)
+  end
+
+  it 'returns 400 with no params' do
+    get '/api/v1/forcast?'
+
+    expect(response.status).to eq(400)
+
+    body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(body).to have_key(:data)
   end
 end
