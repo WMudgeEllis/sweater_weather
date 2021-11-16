@@ -1,8 +1,6 @@
-require "rails_helper"
-
+require 'rails_helper'
 
 RSpec.describe UnsplashService do
-
   it 'can search for a background', :vcr do
     data = UnsplashService.search('denver')
 

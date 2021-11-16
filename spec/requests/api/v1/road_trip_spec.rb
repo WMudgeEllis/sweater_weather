@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe 'road trip endpoint' do
-
   before :each do
     user = User.create!(email: 'blah', password: 'hunter1')
     key = user.api_keys.create!(key: 'super seekrit')
@@ -27,7 +26,6 @@ RSpec.describe 'road trip endpoint' do
       destination: '',
       api_key: key.key
     }
-
   end
 
   it 'can get details about a roadtrip', :vcr do
@@ -59,7 +57,6 @@ RSpec.describe 'road trip endpoint' do
     expect(body).to have_key(:data)
   end
 
-
   it 'requires non empty string', :vcr do
     post '/api/v1/road_trip', params: @bad_location_credentials
 
@@ -81,5 +78,4 @@ RSpec.describe 'road trip endpoint' do
     expect(body).to have_key(:data)
     expect(body[:data]).to eq('missing location')
   end
-
 end

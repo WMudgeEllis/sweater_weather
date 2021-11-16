@@ -1,5 +1,4 @@
 class UserSerializer
-
   def self.new_user(user, key)
     {
       data: {

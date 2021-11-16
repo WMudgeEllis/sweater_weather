@@ -1,8 +1,6 @@
-require "rails_helper"
-
+require 'rails_helper'
 
 RSpec.describe MapquestService do
-
   it 'can retrieve location with city/state', :vcr do
     response = MapquestService.location_info('denver,co')
 

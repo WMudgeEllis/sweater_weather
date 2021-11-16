@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe 'forcast response' do
-
   it 'can have top level structure', :vcr do
     get '/api/v1/forcast?location=denver,co'
 
@@ -36,7 +35,7 @@ RSpec.describe 'forcast response' do
 
     body = JSON.parse(response.body, symbolize_names: true)
 
-    current_weather =  body[:data][:attributes][:current_weather]
+    current_weather = body[:data][:attributes][:current_weather]
 
     expect(current_weather).to have_key(:datetime)
     expect(current_weather[:datetime]).to be_a(String)
@@ -62,7 +61,7 @@ RSpec.describe 'forcast response' do
     expect(current_weather).to have_key(:visibility)
     expect(current_weather[:visibility]).to be_a(Integer)
 
-    #the first ‘description’ field from the weather data as given by OpenWeather
+    # the first ‘description’ field from the weather data as given by OpenWeather
     expect(current_weather).to have_key(:conditions)
     expect(current_weather[:conditions]).to be_a(String)
 
@@ -70,55 +69,54 @@ RSpec.describe 'forcast response' do
     expect(current_weather[:icon]).to be_a(String)
   end
 
-   it 'can have daily weather structure', :vcr do
-     get '/api/v1/forcast?location=denver,co'
+  it 'can have daily weather structure', :vcr do
+    get '/api/v1/forcast?location=denver,co'
 
-     body = JSON.parse(response.body, symbolize_names: true)
+    body = JSON.parse(response.body, symbolize_names: true)
 
-     daily_weather =  body[:data][:attributes][:daily_weather][0]
+    daily_weather = body[:data][:attributes][:daily_weather][0]
 
-     expect(daily_weather).to have_key(:date)
-     expect(daily_weather[:date]).to be_a(String)
+    expect(daily_weather).to have_key(:date)
+    expect(daily_weather[:date]).to be_a(String)
 
-     expect(daily_weather).to have_key(:sunrise)
-     expect(daily_weather[:sunrise]).to be_a(String)
+    expect(daily_weather).to have_key(:sunrise)
+    expect(daily_weather[:sunrise]).to be_a(String)
 
-     expect(daily_weather).to have_key(:sunset)
-     expect(daily_weather[:sunset]).to be_a(String)
+    expect(daily_weather).to have_key(:sunset)
+    expect(daily_weather[:sunset]).to be_a(String)
 
-     expect(daily_weather).to have_key(:max_temp)
-     expect(daily_weather[:max_temp]).to be_a(Float)
+    expect(daily_weather).to have_key(:max_temp)
+    expect(daily_weather[:max_temp]).to be_a(Float)
 
-     expect(daily_weather).to have_key(:min_temp)
-     expect(daily_weather[:min_temp]).to be_a(Float)
+    expect(daily_weather).to have_key(:min_temp)
+    expect(daily_weather[:min_temp]).to be_a(Float)
 
-     #the first ‘description’ field from the weather data as given by OpenWeather
-     expect(daily_weather).to have_key(:conditions)
-     expect(daily_weather[:conditions]).to be_a(String)
+    # the first ‘description’ field from the weather data as given by OpenWeather
+    expect(daily_weather).to have_key(:conditions)
+    expect(daily_weather[:conditions]).to be_a(String)
 
-     expect(daily_weather).to have_key(:icon)
-     expect(daily_weather[:icon]).to be_a(String)
-   end
+    expect(daily_weather).to have_key(:icon)
+    expect(daily_weather[:icon]).to be_a(String)
+  end
 
-   it 'can have hourly weather structure', :vcr do
-     get '/api/v1/forcast?location=denver,co'
+  it 'can have hourly weather structure', :vcr do
+    get '/api/v1/forcast?location=denver,co'
 
-     body = JSON.parse(response.body, symbolize_names: true)
+    body = JSON.parse(response.body, symbolize_names: true)
 
-     hourly_weather =  body[:data][:attributes][:hourly_weather][0]
+    hourly_weather = body[:data][:attributes][:hourly_weather][0]
 
-     expect(hourly_weather).to have_key(:time)
-     expect(hourly_weather[:time]).to be_a(String)
+    expect(hourly_weather).to have_key(:time)
+    expect(hourly_weather[:time]).to be_a(String)
 
-     expect(hourly_weather).to have_key(:temperature)
-     expect(hourly_weather[:temperature]).to be_a(Float)
+    expect(hourly_weather).to have_key(:temperature)
+    expect(hourly_weather[:temperature]).to be_a(Float)
 
-     #the first ‘description’ field from the weather data as given by OpenWeather
-     expect(hourly_weather).to have_key(:conditions)
-     expect(hourly_weather[:conditions]).to be_a(String)
+    # the first ‘description’ field from the weather data as given by OpenWeather
+    expect(hourly_weather).to have_key(:conditions)
+    expect(hourly_weather[:conditions]).to be_a(String)
 
-     expect(hourly_weather).to have_key(:icon)
-     expect(hourly_weather[:icon]).to be_a(String)
-   end
-
+    expect(hourly_weather).to have_key(:icon)
+    expect(hourly_weather[:icon]).to be_a(String)
+  end
 end

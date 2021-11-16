@@ -1,5 +1,4 @@
-require "rails_helper"
-
+require 'rails_helper'
 
 RSpec.describe UserSerializer do
   it 'returns the user structure' do
@@ -12,6 +11,5 @@ RSpec.describe UserSerializer do
     expect(response[:data][:type]).to eq('users')
     expect(response[:data][:attributes][:email]).to eq(user.email)
     expect(response[:data][:attributes][:api_key]).to eq(key.key)
-
   end
 end

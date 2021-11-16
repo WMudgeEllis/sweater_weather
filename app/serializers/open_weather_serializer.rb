@@ -1,7 +1,6 @@
 class OpenWeatherSerializer
-
   def self.forcast(coords)
-    #refactor to a facade?
+    # refactor to a facade?
     weather_info = OpenWeatherService.forcast(coords[:lat], coords[:long])
     current = CurrentWeather.new(weather_info[:current])
     daily = weather_info[:daily][0..4].map { |day_info| DailyWeather.new(day_info) }
@@ -23,7 +22,7 @@ class OpenWeatherSerializer
             conditions: current.conditions,
             icon: current.icon
           },
-          daily_weather:  daily.map do |day|
+          daily_weather: daily.map do |day|
             {
               date: day.date,
               sunrise: day.sunrise,
@@ -45,7 +44,5 @@ class OpenWeatherSerializer
         }
       }
     }
-
   end
-
 end

@@ -1,5 +1,4 @@
 class BackgroundSerializer
-
   def self.background(background, location)
     {
       data: {

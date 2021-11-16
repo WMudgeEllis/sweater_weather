@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe OpenWeatherSerializer do
   it 'can serialize the forcast', :vcr do
@@ -8,6 +8,6 @@ RSpec.describe OpenWeatherSerializer do
     }
 
     forcast = OpenWeatherSerializer.forcast(coords)
-    #TODO test test test
+    # TODO: test test test
   end
 end

@@ -1,10 +1,9 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe 'user login request' do
-
   before :each do
-     user = User.create!(email: 'whatever@example.com', password: 'password')
-     key = user.api_keys.create!(key: '1234')
+    user = User.create!(email: 'whatever@example.com', password: 'password')
+    user.api_keys.create!(key: '1234')
     @credentials = {
       email: user.email,
       password: 'password'
@@ -32,7 +31,6 @@ RSpec.describe 'user login request' do
 
   it 'returns 403 with bad credentials' do
     post '/api/v1/sessions', params: @bad_credentials
-
 
     expect(response.status).to eq(403)
 

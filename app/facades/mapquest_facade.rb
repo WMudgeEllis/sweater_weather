@@ -1,5 +1,4 @@
 class MapquestFacade
-
   def self.lat_long(city_state)
     location_data = MapquestService.location_info(city_state)
     {

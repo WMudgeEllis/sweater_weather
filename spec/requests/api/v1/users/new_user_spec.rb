@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe 'user endpoint' do
-
   before :each do
     @body_data = {
       email: '123@133.com',
@@ -27,7 +26,6 @@ RSpec.describe 'user endpoint' do
     expect(response.status).to eq(201)
 
     body = JSON.parse(response.body, symbolize_names: true)
-
 
     expect(body).to have_key(:data)
     expect(body[:data]).to have_key(:type)
@@ -56,7 +54,7 @@ RSpec.describe 'user endpoint' do
 
     body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(body[:errors][0]).to eq("Email has already been taken")
+    expect(body[:errors][0]).to eq('Email has already been taken')
   end
 
   it 'returns an error when email is missing' do

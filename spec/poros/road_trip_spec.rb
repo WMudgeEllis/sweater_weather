@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe RoadTrip do
   it 'can exist and have attributes' do
@@ -19,7 +19,6 @@ RSpec.describe RoadTrip do
     expect(trip.travel_time).to eq(data[:travel_time])
     expect(trip.weather_at_eta).to eq(data[:weather_at_eta])
   end
-
 
   it 'returns impossible when travel_time is nil' do
     data = {

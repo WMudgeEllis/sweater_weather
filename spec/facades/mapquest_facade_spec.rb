@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe MapquestFacade, :vcr do
   it 'returns lat and long' do
@@ -11,6 +11,6 @@ RSpec.describe MapquestFacade, :vcr do
   it 'returns eta of route', :vcr do
     result = MapquestFacade.route_time('denver,co', 'fairplay,co')
 
-    expect(result).to eq("01:37:16")
+    expect(result).to eq('01:37:16')
   end
 end

@@ -1,7 +1,5 @@
 class RoadTripSerializer
-
   def self.road_trip(road_trip)
-
     {
       data: {
         id: nil,
@@ -14,7 +12,5 @@ class RoadTripSerializer
         }
       }
     }
-
   end
-
 end

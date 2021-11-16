@@ -1,5 +1,4 @@
 class ErrorSerializer
-
   def self.password_mismatch
     {
       errors: ['the passwords do not match']

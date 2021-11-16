@@ -10,6 +10,7 @@ class RoadTrip
 
   def travel_time
     return 'impossible' if @travel_time.nil?
+
     @travel_time
   end
 end

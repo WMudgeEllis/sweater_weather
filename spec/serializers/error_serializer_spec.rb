@@ -1,8 +1,6 @@
-require "rails_helper"
-
+require 'rails_helper'
 
 RSpec.describe ErrorSerializer do
-
   it '#password_mismatch' do
     expected = {
       errors: ['the passwords do not match']
@@ -13,11 +11,10 @@ RSpec.describe ErrorSerializer do
   end
 
   it '#general' do
-    errors = [ '1', '2' ]
+    errors = %w[1 2]
     expected = {
-      errors: [ '1', '2' ]
+      errors: %w[1 2]
     }
-
 
     response = ErrorSerializer.general(errors)
 
