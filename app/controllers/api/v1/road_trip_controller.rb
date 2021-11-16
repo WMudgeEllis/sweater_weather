@@ -6,7 +6,6 @@ class Api::V1::RoadTripController < ApplicationController
     render json: RoadTripSerializer.road_trip(road_trip)
   end
 
-
 private
 
   def validate_key

@@ -6,5 +6,4 @@ class WeatherFacade
     hour = forcast[:hourly][travel_time.to_i]
     { temperature: hour[:temp], conditions: hour[:weather][0][:description] }
   end
-
 end
